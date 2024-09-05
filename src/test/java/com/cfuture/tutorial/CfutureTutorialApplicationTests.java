@@ -274,7 +274,7 @@ class CfutureTutorialApplicationTests {
                 try {
                     return mockMvc.perform(get("/cfuture/forkjoin")
                                     .param("value", value))
-                           // .andExpect(request().asyncStarted())
+                            .andExpect(request().asyncStarted())
                             .andReturn();
 
                 } catch (Exception e) {
@@ -289,9 +289,9 @@ class CfutureTutorialApplicationTests {
         for (CompletableFuture<MvcResult> future : futures) {
             MvcResult result = future.join();
             mockMvc.perform(asyncDispatch(result))
-                   // .andExpect(status().isOk())
-                  //  .andDo(print())
-                   // .andExpect(content().string(value))
+                    .andExpect(status().isOk())
+                    .andDo(print())
+                    .andExpect(content().string(value))
              ;
 
         }
